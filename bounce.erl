@@ -8,8 +8,8 @@ report() ->
   end.
 
 report(Count) ->
-  receive
+  NewCount = receive
     X -> io:format("Received ~p. Count: ~p", [X,Count]),
-    report(Count + 1)
-  end.
-
+    Count + 1
+  end,
+  report(NewCount).
